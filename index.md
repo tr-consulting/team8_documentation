@@ -1,4 +1,4 @@
-# Dokumentation för broker_integration (Team 8)
+# Dokumentation för broker_integration (Team 8)
 
 Detta dokument är avsett att ligga i ett separat GitHub‑repo för dokumentation. Här sammanfattas alla delar av systemet **broker_integration** på Pyramid‑servern, med fördjupade flödesbeskrivningar och exempel på JSON‑strukturer. Målet är att ge en tydlig vägledning till utvecklare om hur de olika modulerna samverkar, vilka parametrar som skickas och vad som kommer tillbaka.
 
@@ -7,21 +7,21 @@ Detta dokument är avsett att ligga i ett separat GitHub‑repo för dokumentati
 
 ## Innehållsförteckning
 
-- [Mappstruktur och miljö](#mappstruktur-och-miljö)
-- [Gemensamma datamodeller](#gemensamma-datamodeller)
-- [Flödesbeskrivningar per integration](#flödesbeskrivningar-per-integration)
-  - [Vitec](#vitec)
-  - [Quedro](#quedro)
-  - [Notyfile](#notyfile)
-  - [Nextlane](#nextlane)
-  - [KVS (Svensk Fastighetsförmedling)](#kvs-svensk-fastighetsförmedling)
-  - [Freshservice](#freshservice)
-  - [Geckoboard](#geckoboard)
-  - [Dynamics 365](#dynamics-365)
-- [Call‑log‑end‑points](#call-log-end-points)
-- [Databasanvändning](#databasanvändning)
-- [Exempel på JSON‑strukturer](#exempel-på-json-strukturer)
-- [Publicering på GitHub](#publicering-på-github)
+* [Mappstruktur och miljö](#mappstruktur-och-miljö)
+* [Gemensamma datamodeller](#gemensamma-datamodeller)
+* [Flödesbeskrivningar per integration](#flödesbeskrivningar-per-integration)
+  * [Vitec](#vitec)
+  * [Quedro](#quedro)
+  * [Notyfile](#notyfile)
+  * [Nextlane](#nextlane)
+  * [KVS (Svensk Fastighetsförmedling)](#kvs-svensk-fastighetsförmedling)
+  * [Freshservice](#freshservice)
+  * [Geckoboard](#geckoboard)
+  * [Dynamics 365](#dynamics-365)
+* [Call‑log‑end‑points](#call-log-end-points)
+* [Databasanvändning](#databasanvändning)
+* [Exempel på JSON‑strukturer](#exempel-på-json-strukturer)
+* [Bilder](#bilder)
 
 ## Mappstruktur och miljö
 
@@ -80,7 +80,7 @@ I flödesbeskrivningarna nedan visas hur varje integration fungerar i praktiken:
    - **Reparationsorder**: liknande flöde; ger `ActivityNote` av typ `REPAIR` med rubrik och beskrivning av jobb【191103961875513†L684-L754】.  
 5. **Returneras:** Ett komplett `LynesResponseInformation`‑objekt med kundinformation och aktiviteter. Om flera Nextlane‑sajter används (ex. MRG), anpassas API‑nyckel i konfiguration.
 
-### KVS (Svensk Fastighetsförmedling)
+### KVS (Svensk Fastighetsförmedling)
 
 1. **Anrop:** Initieras via `lynes_integration_v2.aspx` om brokerId motsvarar KVS.
 2. **Parametrar:** Telefonnummer konverteras till `00`‑format och ett access token hämtas från Azure AD via `GetAccessToken`【938842210647096†L103-L168】.
@@ -110,9 +110,9 @@ Denna fil används inte för uppslag utan för att **skapa** tickets efter avslu
 
 Används för statistisk monitorering: `GeckoboardIntegration.PushToGeckoboard` anropas från vissa logikmoduler för att skicka anonymiserad data (frånnummer, tillnummer, brokerId) till Geckoboard som JSON via Basic Auth【418922140671880†L5-L29】. Data visualiseras sedan i realtid.
 
-### Dynamics 365
+### Dynamics 365
 
-Integrationen `M8ComDynamics365GET` (kallad Dynamics i rapporten) hämtar kontakter och ärenden från Dynamics 365:
+Integrationen `M8ComDynamics365GET` (kallad Dynamics i rapporten) hämtar kontakter och ärenden från Dynamics 365:
 
 1. **Anrop:** Startas via `_lynes_integration_v2.aspx` när brokerId är kopplad till Dynamics.
 2. **Parametrar:** Telefonnummer normaliseras och skickas som OData‑filter för `mobilephone` och `telephone1`【573992892362798†L21-L67】.
@@ -184,7 +184,7 @@ Nedan visas typiska JSON‑strukturer som returneras efter uppslag. Dessa exempe
       "type": "PROPERTY",
       "header": "Radhus på Lilla vägen 5",
       "timeStamp": "2025-04-15T10:30:00Z",
-      "markdown": "**Bud**: 5 800 000 kr\n\n- 3 rok, 90 m²\n- Inflyttning: 2025-07-01",
+      "markdown": "**Bud**: 5 800 000 kr\n\n- 3 rok, 90 m²\n- Inflyttning: 2025-07-01",
       "activityUrl": "https://vitec.example.com/property/123"
     }
   ],
@@ -212,7 +212,7 @@ Nedan visas typiska JSON‑strukturer som returneras efter uppslag. Dessa exempe
       "type": "CAR",
       "header": "VW GOLF (ABC123)",
       "timeStamp": "",
-      "markdown": "- Årsmodell: 2022\n- Miltal: 15 000 km\n- Bränsle: Bensin",
+      "markdown": "- Årsmodell: 2022\n- Miltal: 15 000 km\n- Bränsle: Bensin",
       "activityUrl": "https://nextlane.example.com/vehicle/ABC123"
     },
     {
@@ -249,14 +249,26 @@ Nedan visas typiska JSON‑strukturer som returneras efter uppslag. Dessa exempe
 }
 ```
 
-## Publicering på GitHub
+## Bilder
 
-För att publicera denna dokumentation:
+Följande bilder används för att illustrera miljön och mappstrukturen i dokumentationen:
 
-1. **Skapa ett nytt repository** (t.ex. `broker_integration_docs`) på GitHub.
-2. Kopiera denna Markdown‑fil (`final_documentation.md`) samt eventuella bilder som refereras (se katalogen `docs/images/` i ditt repo) till repositoryn. Placera dokumentet i rotnivå eller i en `docs/`‑mapp.
-3. Lägg till en `README.md` som kort beskriver syftet och länkar till `final_documentation.md` samt till undersektioner (om du delar upp dokumentet). Använd GitHub‑Markdowns ankarstöd för interna länkar.
-4. Commita och pusha filerna. Använd branches och pull requests om flera utvecklare arbetar med dokumentationen.
-5. Valfritt: använd GitHub‑Wiki för att publicera varje större avsnitt som en separat sida och länka från README för lättare navigering.
+* **Mappstruktur i broker_integration** – visar katalogen `broker_integration` med filer och mappar:
 
-Den här strukturerade dokumentationen ger en sammanhängande bild av systemet och underlättar framtida underhåll och utveckling.
+  ![broker_integration-katalog](./574A4F76-FF99-4456-BD97-7BC49FD5FE78.png)
+
+* **Innehåll i App_Code** – visar källfilerna i mappen `App_Code`:
+
+  ![App_Code-katalog]({{file:file-VAEyVHGNNEK9gSwr2Wposx}})
+
+* **Serverinformation** – visar Windows Server 2016 med hårdvaruspecifikationer för Pyramid‑servern:
+
+  ![Serverinformation]({{file:file-F26222B4-43E7-45B1-A97A-740AB94C7327}})
+
+* **Nätverksinformation** – visar IP‑konfigurationen på servern:
+
+  ![Nätverksinformation]({{file:file-DDazDMbcjoTWVnvPggDGzy}})
+
+* **IIS‑Manager** – visar IIS‑administrationen där webbplatserna (inklusive team8.se) hanteras:
+
+  ![IIS Manager]({{file:file-Dq7YF1ZrgTEtKi6Jg4wS9U}})
