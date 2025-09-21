@@ -259,7 +259,7 @@ Följande bilder används för att illustrera miljön och mappstrukturen i dokum
 
 * **Innehåll i App_Code** – visar källfilerna i mappen `App_Code`:
 
-  ![App_Code-katalog]({{file:file-VAEyVHGNNEK9gSwr2Wposx}})
+  ![App_Code-katalog](./7A1021AE-7B3F-44F8-9B70-3CBA27D273AD.png)
 
 * **Serverinformation** – visar Windows Server 2016 med hårdvaruspecifikationer för Pyramid‑servern:
 
