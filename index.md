@@ -255,20 +255,20 @@ Följande bilder används för att illustrera miljön och mappstrukturen i dokum
 
 * **Mappstruktur i broker_integration** – visar katalogen `broker_integration` med filer och mappar:
 
-  ![broker_integration-katalog](./574A4F76-FF99-4456-BD97-7BC49FD5FE78.png)
+  ![broker_integration-katalog](./broker_integration.png)
 
 * **Innehåll i App_Code** – visar källfilerna i mappen `App_Code`:
 
-  ![App_Code-katalog](./7A1021AE-7B3F-44F8-9B70-3CBA27D273AD.png)
+  ![App_Code-katalog](./app_code.png)
 
 * **Serverinformation** – visar Windows Server 2016 med hårdvaruspecifikationer för Pyramid‑servern:
 
-  ![Serverinformation]({{file:file-F26222B4-43E7-45B1-A97A-740AB94C7327}})
+  ![Serverinformation](./server_spec.png)
 
 * **Nätverksinformation** – visar IP‑konfigurationen på servern:
 
-  ![Nätverksinformation]({{file:file-DDazDMbcjoTWVnvPggDGzy}})
+  ![Nätverksinformation](./ip_config.png)
 
 * **IIS‑Manager** – visar IIS‑administrationen där webbplatserna (inklusive team8.se) hanteras:
 
-  ![IIS Manager]({{file:file-Dq7YF1ZrgTEtKi6Jg4wS9U}})
+  ![IIS Manager](./iis.png)
